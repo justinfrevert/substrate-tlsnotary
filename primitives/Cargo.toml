@@ -1,0 +1,30 @@
+[package]
+name = "primitives"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+sp-runtime-interface = { version = "17.0.0", git = "https://github.com/paritytech/substrate.git", branch = "polkadot-v1.0.0", default-features = false }
+
+# tlsn-verifier = { git = "https://github.com/tlsnotary/tlsn", default-features = false, optional= true }
+
+tlsn-core = { path = "../../tlsn/tlsn/tlsn-core", default-features = false, optional= true }
+
+p256 = { version = "0.13", default-features = false, features = ["pkcs8", "arithmetic", "pem"] }
+
+serde_json = { version = "1.0", optional = true }
+
+
+[features]
+default = [ "std" ]
+std = [
+	"sp-runtime-interface/std",
+	"tlsn-core/std",
+	"serde_json/std",
+	"p256/std"
+]
+disable_panic_handler = []
+disable_oom = [] 
+disable_allocator = []
