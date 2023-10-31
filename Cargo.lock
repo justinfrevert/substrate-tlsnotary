@@ -8759,6 +8759,7 @@ checksum = "1f3ccbac311fea05f86f61904b462b55fb3df8837a366dfc601a0161d0532f20"
 [[package]]
 name = "tlsn-core"
 version = "0.1.0-alpha.2"
+source = "git+https://github.com/justinfrevert/tlsn#aee9fb41aadc192d4e65ade7ec3a41f3576abe3c"
 dependencies = [
  "bimap",
  "bytes",
@@ -8778,6 +8779,7 @@ dependencies = [
 [[package]]
 name = "tlsn-tls-core"
 version = "0.1.0-alpha.2"
+source = "git+https://github.com/justinfrevert/tlsn#aee9fb41aadc192d4e65ade7ec3a41f3576abe3c"
 dependencies = [
  "futures",
  "rand 0.8.5",
