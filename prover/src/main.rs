@@ -1,10 +1,8 @@
-use tlsn_core;
-const PROOF_JSON_MINIFIED: &str = include_str!("externalProofMinified.json");
-
+use clap::{App, Arg};
 use codec::Encode;
-
 use subxt::{OnlineClient, PolkadotConfig};
 use subxt_signer::sr25519::dev;
+use std::fs;
 
 // Generate an interface that we can use from the node's metadata.
 #[subxt::subxt(runtime_metadata_path = "./node_metadata.scale")]
@@ -12,7 +10,16 @@ pub mod node {}
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn std::error::Error>> {
-	let scale_encoded = PROOF_JSON_MINIFIED.encode();
+    let matches = App::new("Your App Name")
+        .arg(Arg::with_name("file")
+            .help("Path to the JSON file containing the proof")
+            .required(true)
+            .index(1))
+        .get_matches();
+    let file_path = matches.value_of("file").unwrap();
+
+    let proof_json_minified = fs::read_to_string(file_path)?;
+    let scale_encoded = proof_json_minified.encode();
 
     let api = OnlineClient::<PolkadotConfig>::new().await?;
     let verify_proof_tx = node::tx().template_module().verify_proof(

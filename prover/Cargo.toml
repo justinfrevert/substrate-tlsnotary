@@ -13,3 +13,4 @@ serde_json = { version = "1.0" }
 subxt = "0.32.1"
 subxt-signer = { version = "0.32.1", features = ["sr25519", "ecdsa", "subxt"] }
 tokio = { version = "1", features = ["full"] }
+clap = "2.33.0"
