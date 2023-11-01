@@ -268,9 +268,14 @@ impl pallet_sudo::Config for Runtime {
 	type WeightInfo = pallet_sudo::weights::SubstrateWeight<Runtime>;
 }
 
+parameter_types! {
+	pub const MaxProofLen: u32 = 49000;
+}
+
 /// Configure the pallet-template in pallets/template.
 impl pallet_template::Config for Runtime {
 	type RuntimeEvent = RuntimeEvent;
+	type MaxProofLen = MaxProofLen;
 	type WeightInfo = pallet_template::weights::SubstrateWeight<Runtime>;
 }
 
